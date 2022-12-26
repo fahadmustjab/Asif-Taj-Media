@@ -44,7 +44,7 @@ class AppColors {
   static const MaterialColor primaryMaterialColor = MaterialColor(
     0xff58ee4a,
     <int, Color>{
-      50: Color(0xff58ee4a),
+      50:  Color(0xff58ee4a),
       100: Color(0xff58ee4a),
       200: Color(0xff58ee4a),
       300: Color(0xff58ee4a),
