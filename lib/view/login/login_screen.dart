@@ -5,7 +5,7 @@ import 'package:tech_media/res/components/InputTextField.dart';
 import 'package:tech_media/res/components/RoundButton.dart';
 import 'package:tech_media/utils/routes/route_name.dart';
 import 'package:tech_media/utils/utils.dart';
-import 'package:tech_media/view/view_model/services/signup/SignUpController.dart';
+import 'package:tech_media/view/view_model/Login/LoginController.dart';
 
 import '../../utils/routes/routes.dart';
 
@@ -41,8 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
             child: ChangeNotifierProvider(
-              create: (_) => SignUpController(),
-              child: Consumer<SignUpController>(
+              create: (_) => LoginController(),
+              child: Consumer<LoginController>(
                 builder: (context, provider, child) {
                   return SingleChildScrollView(
                     child: Column(
@@ -92,10 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           return InputTextField(
                                               myController: passwordController,
                                               SuffixIcon: InkWell(
-                                                onTap: () {
-                                                  obsecureText.value =
-                                                      !obsecureText.value;
-                                                },
+                                                onTap: () {},
                                                 child: obsecureText.value ==
                                                         true
                                                     ? const Icon(
@@ -124,14 +121,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ],
                               )),
-                          const Padding(
-                            padding: EdgeInsets.only(right: 10.0),
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(
-                                'Forgot Password?',
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, RouteName.forgotPassword);
+                              },
+                              child: const Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline),
+                                ),
                               ),
                             ),
                           ),
@@ -140,7 +143,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               title: 'Login',
                               onPress: () {
                                 if (_formKey.currentState!.validate()) {
-                                  
+                                  provider.login(
+                                      context,
+                                      emailController.text.toString(),
+                                      passwordController.text.toString());
                                 }
                               }),
                           const SizedBox(

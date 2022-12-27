@@ -9,9 +9,7 @@ import '../../../../utils/utils.dart';
 
 import 'package:tech_media/utils/routes/route_name.dart';
 
-
-
-class SignUpController with ChangeNotifier {
+class ForgotPasswordController with ChangeNotifier {
   final collection = FirebaseFirestore.instance.collection("users");
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -23,30 +21,13 @@ class SignUpController with ChangeNotifier {
     notifyListeners();
   }
 
-  void signup(BuildContext context,String userName, String EmailText, String PasswordText) async {
+  void recover(BuildContext context, String EmailText) async {
     setLoading(true);
     try {
-      auth
-          .createUserWithEmailAndPassword(
-              email: EmailText, password: PasswordText).then((value) {
-        collection.doc(value.user!.uid.toString()).set({
-          'uid': value.user!.uid.toString(),
-          'UserName': userName,
-          'Email': value.user!.email.toString(),
-          'Online': 'No',
-          'Phone': '',
-          'Profile': '',
-        }).then((value) {
-        Utilities.toastMessage("User Created");
-          setLoading(false);
-          Navigator.pushNamed(context,RouteName.WelcomeScreen);
-        }).onError((error, stackTrace) {
-          setLoading(false);
-          Utilities.toastMessage(error.toString());
-        });
+      auth.sendPasswordResetEmail(email: EmailText).then((value) {
         setLoading(false);
-
-        // Utilities.toastMessage("User Created");
+        Navigator.pushNamed(context, RouteName.loginScreen);
+        Utilities.toastMessage('Please Check your Email');
       }).onError((error, stackTrace) {
         setLoading(false);
 
