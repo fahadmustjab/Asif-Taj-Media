@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
+import 'package:tech_media/view/view_model/services/SessionManager.dart';
 
 import '../../../../utils/utils.dart';
 
@@ -27,6 +28,8 @@ class LoginController with ChangeNotifier {
       auth
           .signInWithEmailAndPassword(email: EmailText, password: PasswordText)
           .then((value) {
+        SessionController().userId = value.user!.uid.toString();
+        // print(SessionController().userId);
         setLoading(false);
         Navigator.pushNamed(context, RouteName.WelcomeScreen);
 

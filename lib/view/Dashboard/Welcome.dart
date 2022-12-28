@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:tech_media/res/color.dart';
+import 'package:tech_media/view/Dashboard/profile.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
@@ -10,10 +11,10 @@ class WelcomeScreen extends StatelessWidget {
   _buildScreen() {
     return [
       Text('HOme'),
-      Text('HOme'),
-      Text('HOme'),
-      Text('HOme'),
-      Text('HOme'),
+      Text('HOm'),
+      Text('HOm'),
+      Text('HOe'),
+      ProfileScreen(),
     ];
   }
 

@@ -92,7 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           return InputTextField(
                                               myController: passwordController,
                                               SuffixIcon: InkWell(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  obsecureText.value =
+                                                      !obsecureText.value;
+                                                },
                                                 child: obsecureText.value ==
                                                         true
                                                     ? const Icon(
@@ -133,6 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   'Forgot Password?',
                                   style: TextStyle(
+                                      color: AppColors.buttonColor,
                                       decoration: TextDecoration.underline),
                                 ),
                               ),
@@ -171,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .headline2!
                                         .copyWith(
                                             fontSize: 15,
-                                            color: AppColors.primaryColor,
+                                            color: AppColors.buttonColor,
                                             decoration:
                                                 TextDecoration.underline),
                                   )

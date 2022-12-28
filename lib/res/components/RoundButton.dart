@@ -24,7 +24,7 @@ class RoundButton extends StatelessWidget {
           height: 50,
           width: MediaQuery.of(context).size.height * 0.70,
           decoration: BoxDecoration(
-            color: AppColors.primaryColor,
+            color: AppColors.buttonColor,
             borderRadius: BorderRadius.circular(25),
           ),
           child: loading == true
